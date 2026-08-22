@@ -46,3 +46,13 @@ MIT
 
 ---
 © 2026 [kobenfang](https://github.com/kobenfang) · 更多技能见 [dsh-skills](https://github.com/kobenfang/dsh-skills)
+
+## 📦 Also on ClawHub (OpenClaw)
+
+This skill is also published on [ClawHub](https://clawhub.ai) for OpenClaw users:
+
+```bash
+npx clawhub install biglead
+```
+
+Search it: `npx clawhub search biglead`
