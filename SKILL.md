@@ -2,6 +2,9 @@
 name: biglead
 description: "🎯 BigLead 精准客户线索挖掘 — B2B销售获客神器。按行业/产品/地区搜索目标公司（覆盖国内客户与企业名录），多渠道交叉验证，提取联系方式（电话/邮箱/官网），构建并管理客户线索库，跟踪跟进状态。适用于找客户、销售线索收集、潜在客户挖掘、客户开发、市场调研与竞品分析。帮助销售团队快速定位目标客户，打造高质量线索池。| B2B Lead Generation & Prospecting — find customers, sales leads, contact extraction, market research."
 ---
+> **🌍 环境兼容（OpenClaw / DSH 双端）**
+> - 脚本在技能目录下执行（`python3 scripts/biglead.py`），数据默认 `$DSH_WORKSPACE/memory/lead-data/` 或 `~/.openclaw/workspace/memory/lead-data/`。
+
 
 # 🎯 BigLead · 精准客户线索挖掘
 
@@ -33,10 +36,10 @@ memory/lead-data/
 ```
 
 **读写方式：**
-- 新增线索 → `python3 skills/biglead/scripts/biglead.py add ...`
-- 查询线索 → `python3 skills/biglead/scripts/biglead.py query ...`
-- 导出 → `python3 skills/biglead/scripts/biglead.py export`
-- 统计 → `python3 skills/biglead/scripts/biglead.py stats`
+- 新增线索 → `python3 scripts/biglead.py add ...`
+- 查询线索 → `python3 scripts/biglead.py query ...`
+- 导出 → `python3 scripts/biglead.py export`
+- 统计 → `python3 scripts/biglead.py stats`
 
 不要手动读写 JSON 文件。
 
@@ -195,7 +198,7 @@ queries = [
 
 ```bash
 # 新增线索
-python3 skills/biglead/scripts/biglead.py add \
+python3 scripts/biglead.py add \
   --company "公司名" \
   --business "业务描述" \
   --region "深圳" \
@@ -206,24 +209,24 @@ python3 skills/biglead/scripts/biglead.py add \
   --source "企查查"
 
 # 批量新增（从 JSON 文件）
-python3 skills/biglead/scripts/biglead.py import --file companies.json
+python3 scripts/biglead.py import --file companies.json
 
 # 查询线索
-python3 skills/biglead/scripts/biglead.py query [--industry 行业] [--region 地区] [--status new]
+python3 scripts/biglead.py query [--industry 行业] [--region 地区] [--status new]
 
 # 更新线索
-python3 skills/biglead/scripts/biglead.py update --id <uuid> --status contacted --notes "已发邮件"
+python3 scripts/biglead.py update --id <uuid> --status contacted --notes "已发邮件"
 
 # 导出 CSV
-python3 skills/biglead/scripts/biglead.py export [--output leads.csv]
+python3 scripts/biglead.py export [--output leads.csv]
 
 # 统计
-python3 skills/biglead/scripts/biglead.py stats
+python3 scripts/biglead.py stats
 
 # 查看已有公司（搜索前过滤用）
-python3 skills/biglead/scripts/biglead.py existing --industry 跨境电商 --region 深圳
+python3 scripts/biglead.py existing --industry 跨境电商 --region 深圳
 # 输出：已收录公司名列表，搜索时自动跳过
 
 # 记录搜索历史
-python3 skills/biglead/scripts/biglead.py log-search --query "深圳 智能家居 公司" --results 12 --new 8
+python3 scripts/biglead.py log-search --query "深圳 智能家居 公司" --results 12 --new 8
 ```

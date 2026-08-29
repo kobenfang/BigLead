@@ -3,14 +3,14 @@
 BigLead — 客户线索数据管理
 
 用法:
-  python3 skills/biglead/scripts/biglead.py add --company "公司名" [--business ...] [--region ...] [--industry ...] [--website ...] [--phone ...] [--email ...] [--source ...]
-  python3 skills/biglead/scripts/biglead.py import --file leads.json
-  python3 skills/biglead/scripts/biglead.py query [--industry 行业] [--region 地区] [--status new]
-  python3 skills/biglead/scripts/biglead.py update --id <uuid> [--status new|contacted|qualified|disqualified] [--notes "..."]
-  python3 skills/biglead/scripts/biglead.py export [--output leads.csv]
-  python3 skills/biglead/scripts/biglead.py stats
-  python3 skills/biglead/scripts/biglead.py log-search --query "..." --results N --new N
-  python3 skills/biglead/scripts/biglead.py check-dupes --company "公司名"
+  python3 scripts/biglead.py add --company "公司名" [--business ...] [--region ...] [--industry ...] [--website ...] [--phone ...] [--email ...] [--source ...]
+  python3 scripts/biglead.py import --file leads.json
+  python3 scripts/biglead.py query [--industry 行业] [--region 地区] [--status new]
+  python3 scripts/biglead.py update --id <uuid> [--status new|contacted|qualified|disqualified] [--notes "..."]
+  python3 scripts/biglead.py export [--output leads.csv]
+  python3 scripts/biglead.py stats
+  python3 scripts/biglead.py log-search --query "..." --results N --new N
+  python3 scripts/biglead.py check-dupes --company "公司名"
 """
 
 import json, os, sys, uuid, csv, io, argparse
@@ -18,7 +18,8 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 TZ = timezone(timedelta(hours=8))
-DATA_DIR = Path(__file__).resolve().parent.parent.parent.parent / "memory" / "lead-data"
+import os
+DATA_DIR = Path(os.environ.get('DSH_WORKSPACE') or os.environ.get('OPENCLAW_WORKSPACE') or os.path.expanduser('~/.openclaw/workspace')) / "memory" / "lead-data"
 LEADS_FILE = DATA_DIR / "leads.json"
 HISTORY_FILE = DATA_DIR / "search-history.json"
 EXPORT_DIR = DATA_DIR / "export"
